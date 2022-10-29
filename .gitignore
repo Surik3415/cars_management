@@ -1,1 +1,8 @@
-* file with all added auto-generated file names/folders(e.g. .idea, .vscode, node_modules, .bundle, etc.. )
+## there should be all added auto-generated file names/folders witch we want to igtor by Git
+##
+## for example:
+## 
+##.idea
+##.vscode
+##.node_modules
+##.bundle
