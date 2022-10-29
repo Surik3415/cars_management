@@ -1,11 +1,8 @@
+### Task link
 
-Basic information about PULL REQUEST
+### What has been changed?
 
-    ▪ Task link
+### Important notes
 
-    ▪ What has been changed?
-
-    ▪ Important notes
-
-    ▪ Self-checks
+### Self-checks
     
