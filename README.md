@@ -8,4 +8,3 @@
 ## 4.  for convenient viewing in the code editor - run the command **"code ."**. The command must be entered while in the cloned folder.
 
 ## 5. to verify that the code is working correctly, you can go to the project folder and run the code using the command **"ruby index.rb"**. *If you have problems running the code, first of all check if you have ruby ​​installed on your device.*
-
