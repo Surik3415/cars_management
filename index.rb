@@ -69,7 +69,8 @@ end
 #puts myOnlyRes
 
 for car in myOnlyRes
-    puts "  Id: #{car[:id]}
+    puts "  
+            Id: #{car[:id]}
 
             Make: #{car[:make]}
 
