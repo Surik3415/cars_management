@@ -75,26 +75,26 @@ end
 
 
 # render for console
-#for car in myOnlyRes
-#    puts "  
-#            Id: #{car[:id]}
-#
-#            Make: #{car[:make]}
-#
-#            Model: #{car[:model]}
-#
-#            Year: #{car[:year]}
-#
-#            Odometer: #{car[:odometer]}
-#
-#            Price: #{car[:price]}
-#
-#            Description: #{car[:description]}
-#
-#            Date added: #{car[:date_added]}
-#__________________________________________________________________________________
-#    " 
-#end
+for car in myOnlyRes
+    puts "  
+            Id: #{car[:id]}
+
+            Make: #{car[:make]}
+
+            Model: #{car[:model]}
+
+            Year: #{car[:year]}
+
+            Odometer: #{car[:odometer]}
+
+            Price: #{car[:price]}
+
+            Description: #{car[:description]}
+
+            Date added: #{car[:date_added]}
+__________________________________________________________________________________
+    " 
+end
 
 $searches = File.open("./searches.yml","a+")
 $myOnlyRes = myOnlyRes
