@@ -10,12 +10,16 @@ require 'date'
 # load a yaml file + symbolize all keys of hashes
 $carsFile = YAML.safe_load_file('./cars.yml', symbolize_names: true) 
 
-#function for creating an array of cars
+# function for creating an array of cars
 def resolt (makePar, modelPar, year_fromPar ,year_toPar, price_fromPar, price_toPar)
+
+    #create a new array to save a found cars by request
     arrWithCars = []
 
+    #filter yaml file with car informatoin
     $carsFile.map do |car|
             if (car[:make] == makePar.capitalize || makePar == "") && (car[:model] == modelPar.capitalize || modelPar == "") && (car[:year] >= year_fromPar.to_i || year_fromPar == "") && (year_toPar.to_i >= car[:year] || year_toPar == "") && (car[:price] > price_fromPar.to_i || price_fromPar == "") && (price_toPar.to_i > car[:price] || price_toPar == "")
+                #add diltered information to array
                 arrWithCars << car
             end
         end
@@ -43,10 +47,10 @@ puts "Please choose price_to: "
 price_to = gets.chomp
 
 
-# new arr witch incluses all heshes with finded cars
+# create new array witch incluses all heshes with found cars
 myOnlyRes = resolt(make, model, year_from, year_to, price_from, price_to) 
 
-# defolt sort by Date
+# defolt sort by date_added
 myOnlyRes = myOnlyRes.sort_by {|car| Date.strptime(car[:date_added], '%d/%m/%y')}.reverse 
 
 
@@ -74,7 +78,7 @@ end
 
 
 
-# render for console
+# return my resolt console
 for car in myOnlyRes
     puts "  
             Id: #{car[:id]}
@@ -96,14 +100,20 @@ ________________________________________________________________________________
     " 
 end
 
+#open yaml file to sabe body of my requests
 $searches = File.open("./searches.yml","a+")
+
+#inirialize variable with finded cars as global var to work in other objects  
 $myOnlyRes = myOnlyRes
 
 
-
+#create class to create a requests
 class Req
+
+    #allow to make changes in parameters
     attr_accessor :make, :model, :year_from, :year_to, :price_from, :price_to, :orderBy, :orderDirection, :getQuantityOfSameReq
 
+    #initialize constructor function to create a request
     def initialize (make, model, year_from, year_to, price_from, price_to, orderBy, orderDirection)
         @make = make
         @model = model
@@ -120,6 +130,7 @@ class Req
 
     end
 
+    #пубудивись це, бо походу ти це будеш видаляти 
     def getQuantityOfCars
         
         if $myOnlyRes.length > 0
@@ -135,30 +146,34 @@ class Req
 
 end
 
-
+#initialize my request
 requestObject = Req.new(make, model, year_from, year_to, price_from, price_to, orderBy, orderDirection)
 
-
+#create hash from object to save it in yaml file
 $heshedObject = {}
 requestObject.instance_variables.each {|var| $heshedObject[var.to_s.delete("@")] = requestObject.instance_variable_get(var) }
 
+#save request hash in yaml file
 $searches.puts YAML.dump($heshedObject)
 $searches.close
 
-
+#open "./searches.yml" with my requests 
 log = File.open("./searches.yml")
 yp = YAML::load_stream(log) {|doc|
 
+    # increament QuantityOfSameReq if same request was finded in yaml file 
  if ($heshedObject.to_a.slice(0,9) & doc.to_a.slice(0,9)) == doc.to_a.slice(0,9)
      $heshedObject["getQuantityOfSameReq"] += 1
  end
    
 }
 
+#puts a Statistic info about total quantity of finded car by last request and
+#puts a Statistic info requests quantity with same parameters 
     puts " 
             Statistic:
 
-            Total Quantity: #{$heshedObject["totalQuantityOfCars"]}
+            Total quantity: #{$heshedObject["totalQuantityOfCars"]}
 
             Requests quantity: #{$heshedObject["getQuantityOfSameReq"]}
 __________________________________________________________________________________
