@@ -14,26 +14,26 @@ def show_requested_car
 end
 
 
-$hash_with_my_imputs = {}
+$requested_cars = {}
 
 # get argument for search request
 puts "Please choose make: "
-$hash_with_my_imputs[:make] = gets.capitalize.chomp
+$requested_cars[:make] = gets.capitalize.chomp
 
 puts "Please choose model: "
-$hash_with_my_imputs [:model] = gets.capitalize.chomp
+$requested_cars [:model] = gets.capitalize.chomp
 
 puts "Please choose year_from: "
-$hash_with_my_imputs[:year_from] = gets.chomp
+$requested_cars[:year_from] = gets.chomp
 
 puts "Please choose year_to: "
-$hash_with_my_imputs[:year_to] = gets.chomp
+$requested_cars[:year_to] = gets.chomp
 
 puts "Please choose price_from: "
-$hash_with_my_imputs[:price_from] = gets.chomp
+$requested_cars[:price_from] = gets.chomp
 
 puts "Please choose price_to: "
-$hash_with_my_imputs[:price_to] = gets.chomp
+$requested_cars[:price_to] = gets.chomp
 
 
 # load a yaml file + symbolize all keys of hashes
@@ -55,8 +55,8 @@ add_all_cars_from_YALM
 
 
 def filter_arr_with_cars_by_make_and_model(rule)
-    skip_by_empty_value = $hash_with_my_imputs[rule] == ""
-    $arr_with_cars.keep_if {|car| car[rule] == $hash_with_my_imputs[rule] || skip_by_empty_value}
+    skip_by_empty_value = $requested_cars[rule] == ""
+    $arr_with_cars.keep_if {|car| car[rule] == $requested_cars[rule] || skip_by_empty_value}
 end
 
 
@@ -71,8 +71,8 @@ filter_arr_with_cars_by_make_and_model(model)
 
 def filter_arr_with_cars_by_year_and_price(rule, parameter_from, parameter_to)
 
-    from = $hash_with_my_imputs[parameter_from]
-    tok = $hash_with_my_imputs[parameter_to]
+    from = $requested_cars[parameter_from]
+    tok = $requested_cars[parameter_to]
 
     skip_by_empty_from = from == ""
     skip_by_empty_to = tok == ""
