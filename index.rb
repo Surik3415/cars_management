@@ -6,6 +6,30 @@ require 'yaml'
 # load module to work with dates
 require 'date' 
 
+# create a function to display the result on the screen
+def showRequestedCar 
+    for car in $arrWithCars
+    puts "  
+            Id: #{car[:id]}
+
+            Make: #{car[:make]}
+
+            Model: #{car[:model]}
+
+            Year: #{car[:year]}
+
+            Odometer: #{car[:odometer]}
+
+            Price: #{car[:price]}
+
+            Description: #{car[:description]}
+
+            Date added: #{car[:date_added]}
+__________________________________________________________________________________
+    " 
+    end
+end
+
 $hashWithMyImputs = {}
 
 # get argument for search request
@@ -119,29 +143,6 @@ else
     $arrWithCars = $arrWithCars.sort_by {|car| Date.strptime(car[:date_added], '%d/%m/%y')}.reverse
 end
 
-# create a function to display the result on the screen
-def showRequestedCar 
-    for car in $arrWithCars
-    puts "  
-            Id: #{car[:id]}
-
-            Make: #{car[:make]}
-
-            Model: #{car[:model]}
-
-            Year: #{car[:year]}
-
-            Odometer: #{car[:odometer]}
-
-            Price: #{car[:price]}
-
-            Description: #{car[:description]}
-
-            Date added: #{car[:date_added]}
-__________________________________________________________________________________
-    " 
-    end
-end
 
 #call function to show the result of executing the request according to the specified parameters
 showRequestedCar
