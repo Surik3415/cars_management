@@ -120,3 +120,4 @@ order_direction == "asc" ? $arr_with_cars : $arr_with_cars.reverse!
 
 #call function to show the result of executing the request according to the specified parameters
 show_requested_car 
+
