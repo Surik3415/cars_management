@@ -1,0 +1,11 @@
+---
+make: :make
+model: :model
+year_from: :year_from
+year_to: :year_to
+price_from: :price_from
+price_to: :price_to
+orderBy: ''
+orderDirection: ''
+totalQuantityOfCars: 1
+getQuantityOfSameReq: 0
