@@ -29,7 +29,7 @@ $hashWithMyImputs[:price_to] = gets.chomp
 
 
 # load a yaml file + symbolize all keys of hashes
-$carsFile = YAML.safe_load_file('./cars.yml', symbolize_names: true) 
+$carsFile = YAML.safe_load_file('cars.yml', symbolize_names: true) 
 
 #create a new array to save all cars from yaml 
 $arrWithCars = []
