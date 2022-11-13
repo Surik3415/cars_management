@@ -1,4 +1,3 @@
-puts "Hello world!"
 
 # load module to work with yaml files
 require 'yaml'
@@ -8,27 +7,12 @@ require 'date'
 
 # create a function to display the result on the screen
 def showRequestedCar 
-    for car in $arrWithCars
-    puts "  
-            Id: #{car[:id]}
-
-            Make: #{car[:make]}
-
-            Model: #{car[:model]}
-
-            Year: #{car[:year]}
-
-            Odometer: #{car[:odometer]}
-
-            Price: #{car[:price]}
-
-            Description: #{car[:description]}
-
-            Date added: #{car[:date_added]}
-__________________________________________________________________________________
-    " 
+    $arrWithCars.each do |car|
+        car.each { |key, value| puts "#{key}: #{value}" }
+        puts "---------------------------------------"
     end
 end
+
 
 $hashWithMyImputs = {}
 
@@ -130,19 +114,9 @@ orderDirection = gets.chomp
 
 
 # condition for sort by parametere and diraction
-if orderBy == "price" && orderDirection == "asc"                                             
-    $arrWithCars =  $arrWithCars.sort_by {|car| car[:price]}
-    
-elsif orderBy == "price"
-    $arrWithCars =  $arrWithCars.sort_by {|car| car[:price]}.reverse
+orderBy == "price"  ?  $arrWithCars.sort_by! {|car| car[:price]} :  $arrWithCars.sort_by! {|car| Date.strptime(car[:date_added], '%d/%m/%y')}
 
-elsif orderDirection == "asc" 
-    $arrWithCars = $arrWithCars.sort_by {|car| Date.strptime(car[:date_added], '%d/%m/%y')}
-
-else 
-    $arrWithCars = $arrWithCars.sort_by {|car| Date.strptime(car[:date_added], '%d/%m/%y')}.reverse
-end
-
+orderDirection == "asc" ? $arrWithCars : $arrWithCars.reverse!
 
 #call function to show the result of executing the request according to the specified parameters
 showRequestedCar
