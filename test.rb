@@ -1,9 +1,8 @@
-puts "Hello world!"
 
 # load module to work with yaml files
 require 'yaml'
 
-# load module to work with dates
+ # load module to work with dates
 require 'date' 
 
 $hashWithMyImputs = {}
@@ -26,6 +25,8 @@ $hashWithMyImputs[:price_from] = gets.chomp
 
 puts "Please choose price_to: "
 $hashWithMyImputs[:price_to] = gets.chomp
+
+#puts $hashWithMyImputs 
 
 
 # load a yaml file + symbolize all keys of hashes
@@ -74,26 +75,19 @@ def filterArrWithCarsByYearAndPrice(rule, parameterFrom, parameterTo)
     end
 end
 
-#put the keys in separate variables
 year = :year
 year_from = :year_from
 year_to = :year_to
-
-#call a function that filter the array of cars according to the required parameters
-#filter by given date of manufacture of the car
 filterArrWithCarsByYearAndPrice(year, year_from, year_to)
 
-#put the keys in separate variables
 price = :price
 price_from = :price_from
 price_to = :price_to
-
-#call a function that filter the array of cars according to the required parameters
-#filter by the given price range
-filterArrWithCarsByYearAndPrice(price, price_from, price_to)
+puts filterArrWithCarsByYearAndPrice(price, price_from, price_to)
 
 
-# defolt sort by date_added. Sort by decline
+
+# defolt sort by date_added
 $arrWithCars = $arrWithCars.sort_by {|car| Date.strptime(car[:date_added], '%d/%m/%y')}.reverse 
 
 
@@ -119,7 +113,8 @@ else
     $arrWithCars = $arrWithCars.sort_by {|car| Date.strptime(car[:date_added], '%d/%m/%y')}.reverse
 end
 
-# create a function to display the result on the screen
+# return my resolt 
+
 def showRequestedCar 
     for car in $arrWithCars
     puts "  
@@ -143,5 +138,5 @@ ________________________________________________________________________________
     end
 end
 
-#call function to show the result of executing the request according to the specified parameters
 showRequestedCar
+
