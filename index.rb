@@ -8,57 +8,42 @@ require 'date'
 # create a function to display the result on the screen
 def show_requested_car 
     puts "--------------------------------------- \nResults:"
-    $arr_with_cars.each do |car|
+    $cars_file.each do |car|
         car.each { |key, value| puts "#{key}: #{value}" }
+        puts "---------------------------------------"
     end
 end
 
-
-$requested_cars = {}
+#create hash with request parameter
+$request_parameter = {}
 
 # get argument for search request
 puts "Please choose make: "
-$requested_cars[:make] = gets.capitalize.chomp
+$request_parameter[:make] = gets.capitalize.chomp
 
 puts "Please choose model: "
-$requested_cars [:model] = gets.capitalize.chomp
+$request_parameter [:model] = gets.capitalize.chomp
 
 puts "Please choose year_from: "
-$requested_cars[:year_from] = gets.chomp
+$request_parameter[:year_from] = gets.chomp
 
 puts "Please choose year_to: "
-$requested_cars[:year_to] = gets.chomp
+$request_parameter[:year_to] = gets.chomp
 
 puts "Please choose price_from: "
-$requested_cars[:price_from] = gets.chomp
+$request_parameter[:price_from] = gets.chomp
 
 puts "Please choose price_to: "
-$requested_cars[:price_to] = gets.chomp
-
+$request_parameter[:price_to] = gets.chomp
 
 # load a yaml file + symbolize all keys of hashes
 $cars_file = YAML.safe_load_file('cars.yml', symbolize_names: true) 
 
-#create a new array to save all cars from yaml 
-$arr_with_cars = []
-
-def add_all_cars_from_YALM
-$cars_file.map do |car|
-        $arr_with_cars << car
-    end
-end
-
-#call the function and add all our machines to the array
-add_all_cars_from_YALM
-
-#$arr_with_cars
-
-
+# creating a function for filtering files 
 def filter_arr_with_cars_by_make_and_model(rule)
-    skip_by_empty_value = $requested_cars[rule] == ""
-    $arr_with_cars.keep_if {|car| car[rule] == $requested_cars[rule] || skip_by_empty_value}
+    skip_by_empty_value = $request_parameter[rule] == ""
+    $cars_file.keep_if {|car| car[rule] == $request_parameter[rule] || skip_by_empty_value}
 end
-
 
 make = :make
 model = :model
@@ -66,18 +51,16 @@ model = :model
 filter_arr_with_cars_by_make_and_model(make)
 filter_arr_with_cars_by_make_and_model(model)
 
-#puts $arr_with_cars
-
 
 def filter_arr_with_cars_by_year_and_price(rule, parameter_from, parameter_to)
 
-    from = $requested_cars[parameter_from]
-    tok = $requested_cars[parameter_to]
+    from = $request_parameter[parameter_from]
+    tok = $request_parameter[parameter_to]
 
     skip_by_empty_from = from == ""
     skip_by_empty_to = tok == ""
 
-    $arr_with_cars.keep_if do |car|
+    $cars_file.keep_if do |car|
         (car[rule] >= from.to_i || skip_by_empty_from) && (car[rule] <= tok.to_i || skip_by_empty_to)
     end
 end
@@ -102,7 +85,7 @@ filter_arr_with_cars_by_year_and_price(price, price_from, price_to)
 
 
 # defolt sort by date_added. Sort by decline
-$arr_with_cars = $arr_with_cars.sort_by {|car| Date.strptime(car[:date_added], '%d/%m/%y')}.reverse 
+$cars_file = $cars_file.sort_by {|car| Date.strptime(car[:date_added], '%d/%m/%y')}.reverse 
 
 
 # get order parameter and diraction for sort process
@@ -114,9 +97,9 @@ order_direction = gets.chomp
 
 
 # condition for sort by parametere and diraction
-order_by == "price"  ?  $arr_with_cars.sort_by! {|car| car[:price]} :  $arr_with_cars.sort_by! {|car| Date.strptime(car[:date_added], '%d/%m/%y')}
+order_by == "price"  ?  $cars_file.sort_by! {|car| car[:price]} :  $cars_file.sort_by! {|car| Date.strptime(car[:date_added], '%d/%m/%y')}
 
-order_direction == "asc" ? $arr_with_cars : $arr_with_cars.reverse!
+order_direction == "asc" ? $cars_file : $cars_file.reverse!
 
 #call function to show the result of executing the request according to the specified parameters
 show_requested_car 
