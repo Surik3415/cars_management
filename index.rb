@@ -7,9 +7,9 @@ require 'date'
 
 # create a function to display the result on the screen
 def show_requested_car 
+    puts "--------------------------------------- \nResults:"
     $arr_with_cars.each do |car|
         car.each { |key, value| puts "#{key}: #{value}" }
-        puts "---------------------------------------"
     end
 end
 
