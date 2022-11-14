@@ -7,8 +7,8 @@ require 'date'
 # create a function to display statistic information
 def show_statistic
     puts "---------------------------------------\nStatistic: 
-    \nTotal Quantity: #{$heshed_request["total_quantity_of_cars"]} 
-    \nRequests quantity: #{$heshed_request["get_quantity_of_request"]}\n"
+    \nTotal Quantity: #{$request_parameter[:total_quantity_of_cars]} 
+    \nRequests quantity: #{$request_parameter[:quantity_of_request]}\n"
 end
 
 # create a function to display the result on the screen
@@ -22,10 +22,10 @@ end
 
 
 
-#create hash with request parameter
+#create hash with request_statistic parameter
 $request_parameter = {}
 
-# get argument for search request
+# get argument for search request_statistic
 puts "Please choose make: "
 make = gets.capitalize.chomp
 $request_parameter[:make] = make
@@ -107,81 +107,38 @@ order_by == "price"  ?  $cars_file.sort_by! {|car| car[:price]} :  $cars_file.so
 
 order_direction == "asc" ? $cars_file : $cars_file.reverse!
 
-#call function to show the result of executing the request according to the specified parameters
-#show_requested_car 
-
-
 
 #open yaml file to sabe body of my requests
-$searches = File.open("./searches.yml","a+")
+$searches = File.open("searches.yml","a+")
 
-
-
-#create class to create a requests
-class Request
-
-    #allow to make changes in parameters
-    attr_accessor :make, :model, :year_from, :year_to, :price_from, :price_to, :order_by, :order_direction, :get_quantity_of_request
-
-    #initialize constructor function to create a request
-    def initialize (make, model, year_from, year_to, price_from, price_to, order_by, order_direction)
-        @make = make
-        @model = model
-        @year_from = year_from
-        @year_to = year_to
-        @price_from = price_from
-        @price_to = price_to
-        @order_by = order_by
-        @order_direction = order_direction
-        @total_quantity_of_cars = 0
-        @get_quantity_of_request = 1
-
-        get_quantity_of_cars
-
-    end
-
-    #пубудивись це, бо походу ти це будеш видаляти 
-    def get_quantity_of_cars
+def get_quantity_of_cars
         
-        if $cars_file.length > 0
-            @total_quantity_of_cars = $cars_file.length
-        end
-        return @total_quantity_of_cars
-    end
-
-    def incr_same_req 
-
+    if $cars_file.length > 0
+        $request_parameter[:total_quantity_of_cars] = $cars_file.length
+    else
+        $request_parameter[:total_quantity_of_cars] = 0
     end
 
 end
-
-#initialize my request
-request_object = Request.new(make, model, year_from, year_to, price_from, price_to, order_by, order_direction)
-
-#create hash from object to save it in yaml file
-$heshed_request = {}
-request_object.instance_variables.each {|var| $heshed_request[var.to_s.delete("@")] = request_object.instance_variable_get(var) }
-
-
+get_quantity_of_cars
+#create quantity_of_request key with default velue 
+$request_parameter[:quantity_of_request] = 1
 
 #open "searches.yml" with my requests 
 log = File.open("searches.yml")
 yp = YAML::load_stream(log) {|doc|
-
-    # increament QuantityOfSameReq if same request was finded in yaml file 
-    if ($heshed_request.to_a.slice(0,9) & doc.to_a.slice(0,9)) == doc.to_a.slice(0,9)
-     $heshed_request["get_quantity_of_request"] += 1
-
- end  
+    
+    # increament QuantityOfSameReq if same request_statistic was finded in yaml file 
+    if ($request_parameter.to_a.slice(0,9) & doc.to_a.slice(0,9)) == doc.to_a.slice(0,9)
+     $request_parameter[:quantity_of_request] += 1
+    end  
 }
 
-#save request hash in yaml file
-$searches.puts YAML.dump($heshed_request)
+#save request_statistic hash in yaml file
+$searches.puts YAML.dump($request_parameter)
 $searches.close
 
-#puts a Statistic info about total quantity of finded car by last request and
+#puts a Statistic info about total quantity of finded car by last request_statistic and
 #puts a Statistic info requests quantity with same parameters 
-
-
 show_statistic
 show_requested_car

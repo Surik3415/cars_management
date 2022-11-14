@@ -140,8 +140,7 @@ class Req
     end
 
     def getQuantityOfSameReq
-        
-        returs @getQuantityOfSameReq += 1
+         @getQuantityOfSameReq += 1
     end
 
 end
