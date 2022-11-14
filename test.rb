@@ -78,6 +78,28 @@ end
 
 
 
+# return my resolt console
+for car in myOnlyRes
+    puts "  
+            Id: #{car[:id]}
+
+            Make: #{car[:make]}
+
+            Model: #{car[:model]}
+
+            Year: #{car[:year]}
+
+            Odometer: #{car[:odometer]}
+
+            Price: #{car[:price]}
+
+            Description: #{car[:description]}
+
+            Date added: #{car[:date_added]}
+__________________________________________________________________________________
+    " 
+end
+
 #open yaml file to sabe body of my requests
 $searches = File.open("./searches.yml","a+")
 
@@ -102,7 +124,7 @@ class Req
         @orderBy = orderBy
         @orderDirection = orderDirection
         @totalQuantityOfCars = 0
-        @getQuantityOfSameReq = 0
+        @getQuantityOfSameReq = 1
 
         getQuantityOfCars
 
@@ -140,9 +162,9 @@ yp = YAML::load_stream(log) {|doc|
     # increament QuantityOfSameReq if same request was finded in yaml file 
  if ($heshedObject.to_a.slice(0,9) & doc.to_a.slice(0,9)) == doc.to_a.slice(0,9)
      $heshedObject["getQuantityOfSameReq"] += 1
- end  
+ end
+   
 }
-
 #save request hash in yaml file
 $searches.puts YAML.dump($heshedObject)
 $searches.close
@@ -158,23 +180,3 @@ $searches.close
 __________________________________________________________________________________
             "
 
-for car in myOnlyRes
-    puts "  
-            Id: #{car[:id]}
-
-            Make: #{car[:make]}
-
-            Model: #{car[:model]}
-
-            Year: #{car[:year]}
-
-            Odometer: #{car[:odometer]}
-
-            Price: #{car[:price]}
-
-            Description: #{car[:description]}
-
-            Date added: #{car[:date_added]}
-__________________________________________________________________________________
-    " 
-end

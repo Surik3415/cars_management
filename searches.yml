@@ -1,15 +1,4 @@
 ---
-make: :make
-model: :model
-year_from: :year_from
-year_to: :year_to
-price_from: :price_from
-price_to: :price_to
-orderBy: ''
-orderDirection: ''
-totalQuantityOfCars: 1
-getQuantityOfSameReq: 0
----
 make: Ford
 model: ''
 year_from: ''
@@ -19,18 +8,7 @@ price_to: ''
 orderBy: ''
 orderDirection: ''
 totalQuantityOfCars: 2
-getQuantityOfSameReq: 0
----
-make: Ford
-model: ''
-year_from: ''
-year_to: ''
-price_from: ''
-price_to: ''
-orderBy: ''
-orderDirection: ''
-totalQuantityOfCars: 2
-getQuantityOfSameReq: 0
+getQuantityOfSameReq: 1
 ---
 make: Ford
 model: ''

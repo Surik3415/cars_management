@@ -124,7 +124,7 @@ class Req
         @orderBy = orderBy
         @orderDirection = orderDirection
         @totalQuantityOfCars = 0
-        @getQuantityOfSameReq = 0
+        @getQuantityOfSameReq = 1
 
         getQuantityOfCars
 
@@ -153,9 +153,7 @@ requestObject = Req.new(make, model, year_from, year_to, price_from, price_to, o
 $heshedObject = {}
 requestObject.instance_variables.each {|var| $heshedObject[var.to_s.delete("@")] = requestObject.instance_variable_get(var) }
 
-#save request hash in yaml file
-$searches.puts YAML.dump($heshedObject)
-$searches.close
+
 
 #open "./searches.yml" with my requests 
 log = File.open("./searches.yml")
@@ -167,6 +165,9 @@ yp = YAML::load_stream(log) {|doc|
  end
    
 }
+#save request hash in yaml file
+$searches.puts YAML.dump($heshedObject)
+$searches.close
 
 #puts a Statistic info about total quantity of finded car by last request and
 #puts a Statistic info requests quantity with same parameters 
