@@ -6,9 +6,9 @@ require 'yaml'
 require 'date' 
 
 # create a function to display the result on the screen
-def show_requested_car (database)
+def show_requested_car (requested_cars)
     puts "--------------------------------------- \nResults:"
-    database.each do |car|
+    requested_cars.each do |car|
         car.each { |key, value| puts "#{key}: #{value}" }
         puts "---------------------------------------"
     end
@@ -40,9 +40,9 @@ $request_parameter[:price_to] = gets.chomp
 cars_file = YAML.safe_load_file('cars.yml', symbolize_names: true) 
 
 # creating a function for filtering files 
-def filter_arr_with_cars_by_make_and_model(rule, database)
+def filter_arr_with_cars_by_make_and_model(rule, requested_cars)
     skip_by_empty_value = $request_parameter[rule] == ""
-    database.keep_if {|car| car[rule] == $request_parameter[rule] || skip_by_empty_value}
+    requested_cars.keep_if {|car| car[rule] == $request_parameter[rule] || skip_by_empty_value}
 end
 
 make = :make
@@ -52,7 +52,7 @@ filter_arr_with_cars_by_make_and_model(make, cars_file)
 filter_arr_with_cars_by_make_and_model(model, cars_file)
 
 
-def filter_arr_with_cars_by_year_and_price(rule, parameter_from, parameter_to, database)
+def filter_arr_with_cars_by_year_and_price(rule, parameter_from, parameter_to, requested_cars)
 
     from = $request_parameter[parameter_from]
     tok = $request_parameter[parameter_to]
@@ -60,7 +60,7 @@ def filter_arr_with_cars_by_year_and_price(rule, parameter_from, parameter_to, d
     skip_by_empty_from = from == ""
     skip_by_empty_to = tok == ""
 
-    database.keep_if do |car|
+    requested_cars.keep_if do |car|
         (car[rule] >= from.to_i || skip_by_empty_from) && (car[rule] <= tok.to_i || skip_by_empty_to)
     end
 end
