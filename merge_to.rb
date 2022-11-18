@@ -12,9 +12,9 @@ def show_statistic
 end
 
 # create a function to display the result on the screen
-def show_requested_car 
+def show_requested_car(cars_file)
     puts "--------------------------------------- \nResults:"
-    $cars_file.each do |car|
+    cars_file.each do |car|
         car.each { |key, value| puts "\n#{key}: #{value}" }
         puts "---------------------------------------"
     end
@@ -51,45 +51,45 @@ price_to = gets.chomp
 $request_parameter[:price_to] = price_to
 
 # load a yaml file + symbolize all keys of hashes
-$cars_file = YAML.safe_load_file('cars.yml', symbolize_names: true) 
+cars_file = YAML.safe_load_file('cars.yml', symbolize_names: true) 
 
 # creating a function for filtering files 
-def filter_arr_with_cars_by_make_and_model(rule)
+def filter_arr_with_cars_by_make_and_model(rule, cars_file)
     skip_by_empty_value = $request_parameter[rule] == ""
-    $cars_file.keep_if {|car| car[rule] == $request_parameter[rule] || skip_by_empty_value}
+    cars_file.keep_if {|car| car[rule] == $request_parameter[rule] || skip_by_empty_value}
 end
 
 
-filter_arr_with_cars_by_make_and_model(:make)
-filter_arr_with_cars_by_make_and_model(:model)
+filter_arr_with_cars_by_make_and_model(:make, cars_file)
+filter_arr_with_cars_by_make_and_model(:model, cars_file)
 
 
-def filter_arr_with_cars_by_year_and_price(rule, parameter_from, parameter_to)
+def filter_arr_with_cars_by_year_and_price(rule, parameter_from, parameter_to, cars_file)
 
     from = $request_parameter[parameter_from]
-    tok = $request_parameter[parameter_to]
+    to = $request_parameter[parameter_to]
 
     skip_by_empty_from = from == ""
-    skip_by_empty_to = tok == ""
+    skip_by_empty_to = to == ""
 
-    $cars_file.keep_if do |car|
-        (car[rule] >= from.to_i || skip_by_empty_from) && (car[rule] <= tok.to_i || skip_by_empty_to)
+    cars_file.keep_if do |car|
+        (car[rule] >= from.to_i || skip_by_empty_from) && (car[rule] <= to.to_i || skip_by_empty_to)
     end
 end
 
 
 #call a function that filter the array of cars according to the required parameters
 #filter by given date of manufacture of the car
-filter_arr_with_cars_by_year_and_price(:year, :year_from, :year_to)
+filter_arr_with_cars_by_year_and_price(:year, :year_from, :year_to, cars_file)
 
 
 #call a function that filter the array of cars according to the required parameters
 #filter by the given price range
-filter_arr_with_cars_by_year_and_price(:price, :price_from, :price_to)
+filter_arr_with_cars_by_year_and_price(:price, :price_from, :price_to, cars_file)
 
 
 # defolt sort by date_added. Sort by decline
-$cars_file = $cars_file.sort_by {|car| Date.strptime(car[:date_added], '%d/%m/%y')}.reverse 
+cars_file = cars_file.sort_by {|car| Date.strptime(car[:date_added], '%d/%m/%y')}.reverse 
 
 
 # get order parameter and diraction for sort process
@@ -103,26 +103,23 @@ $request_parameter[:order_direction] = order_direction
 
 
 # condition for sort by parametere and diraction
-order_by == "price"  ?  $cars_file.sort_by! {|car| car[:price]} :  $cars_file.sort_by! {|car| Date.strptime(car[:date_added], '%d/%m/%y')}
+order_by == "price"  ?  cars_file.sort_by! {|car| car[:price]} :  cars_file.sort_by! {|car| Date.strptime(car[:date_added], '%d/%m/%y')}
 
-order_direction == "asc" ? $cars_file : $cars_file.reverse!
+order_direction == "asc" ? cars_file : cars_file.reverse!
 
 
 #open yaml file to sabe body of my requests
-$searches = File.open("searches.yml","a+")
+searches = File.open("searches.yml","a+")
 
-def get_quantity_of_cars
-        
-    if $cars_file.length > 0
-        $request_parameter[:total_quantity_of_cars] = $cars_file.length
-    else
-        $request_parameter[:total_quantity_of_cars] = 0
-    end
-
+def get_quantity_of_cars(cars_file)     
+    (cars_file.length > 0) ? $request_parameter[:total_quantity_of_cars] = cars_file.length : $request_parameter[:total_quantity_of_cars] = 0
 end
-get_quantity_of_cars
+
+get_quantity_of_cars(cars_file)
+
 #create quantity_of_request key with default velue 
 $request_parameter[:quantity_of_request] = 1
+
 
 #open "searches.yml" with my requests 
 log = File.open("searches.yml")
@@ -135,10 +132,10 @@ yp = YAML::load_stream(log) {|doc|
 }
 
 #save request_statistic hash in yaml file
-$searches.puts YAML.dump($request_parameter)
-$searches.close
+searches.puts YAML.dump($request_parameter)
+searches.close
 
 #puts a Statistic info about total quantity of finded car by last request_statistic and
 #puts a Statistic info requests quantity with same parameters 
 show_statistic
-show_requested_car
+show_requested_car(cars_file)
