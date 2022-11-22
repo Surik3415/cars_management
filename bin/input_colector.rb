@@ -1,5 +1,5 @@
 
-
+#class to collect information from the user
 class Input_colector
 
     SEARCH_CRITERIA = ["make", "model", "year_from", "year_to", "price_from", "price_to"]
@@ -11,7 +11,6 @@ class Input_colector
         collect_inputs
     end
 
-    
     def collect_inputs
         SEARCH_CRITERIA.each do |criteria|
             puts "Please choose #{criteria}:"

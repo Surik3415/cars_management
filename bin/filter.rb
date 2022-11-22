@@ -1,4 +1,5 @@
 
+#class for filtering a collection of cars by specified parameters
 class Filter
     
     attr_reader :result_of_search
