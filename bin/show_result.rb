@@ -1,6 +1,5 @@
-class Show_result
-  attr_reader :show_statistic, :show_requested_car
-
+# show my resulp in console
+class ShowResult
   def initialize(statistic_info, result_of_search)
     @statistic_info = statistic_info
     @result_of_search = result_of_search

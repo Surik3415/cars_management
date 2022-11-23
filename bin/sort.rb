@@ -1,3 +1,4 @@
+# sort collection of filtered array with cars
 class Sort
   attr_reader :result_of_search
 

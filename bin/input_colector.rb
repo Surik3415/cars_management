@@ -1,6 +1,6 @@
 # class to collect information from the user
-class Input_colector
-  SEARCH_CRITERIA = %w[make model year_from year_to price_from price_to]
+class InputColector
+  SEARCH_CRITERIA = %w[make model year_from year_to price_from price_to].freeze
 
   attr_reader :rules
 
