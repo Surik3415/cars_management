@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # show my resulp in console
 class ShowResult
   def initialize(statistic_info, result_of_search)

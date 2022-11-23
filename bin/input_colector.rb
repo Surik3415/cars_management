@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # class to collect information from the user
 class InputColector
   SEARCH_CRITERIA = %w[make model year_from year_to price_from price_to].freeze

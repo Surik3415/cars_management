@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # class that creates a collection with statistical information and search results
 class Statistic
   attr_reader :info_to_save, :statistic_info
