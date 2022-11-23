@@ -22,3 +22,51 @@
     price_to: ''
     order_by: ''
     order_direction: ''
+---
+- total_quantity_of_cars: 2
+  quantity_of_request: 1
+  request_params:
+    make: ford
+    model: ''
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
+---
+- total_quantity_of_cars: 0
+  quantity_of_request: 1
+  request_params:
+    make: ''
+    model: bmw
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
+---
+- total_quantity_of_cars: 2
+  quantity_of_request: 1
+  request_params:
+    make: ford
+    model: ''
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
+---
+- total_quantity_of_cars: 2
+  quantity_of_request: 1
+  request_params:
+    make: bmw
+    model: ''
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
