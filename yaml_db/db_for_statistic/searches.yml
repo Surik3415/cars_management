@@ -1,0 +1,24 @@
+---
+- total_quantity_of_cars: 2
+  quantity_of_request: 1
+  request_params:
+    make: bMw
+    model: ''
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
+---
+- total_quantity_of_cars: 1
+  quantity_of_request: 1
+  request_params:
+    make: ''
+    model: a4
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''

@@ -21,7 +21,7 @@ class Filter
         same_rules = @result_of_search[0].keys & @rules.keys
         same_rules.each do |rule|
         skip_by_empty_value = @rules[rule] == ""  
-        @result_of_search.keep_if {|car| car[rule] == @rules[rule].capitalize || skip_by_empty_value}
+        @result_of_search.keep_if {|car| car[rule].upcase == @rules[rule].upcase || skip_by_empty_value}
         end
     end
 
