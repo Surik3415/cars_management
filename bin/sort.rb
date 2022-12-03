@@ -2,23 +2,26 @@
 
 # sort collection of filtered array with cars
 class Sort
-  attr_reader :result_of_search
+  attr_reader :sorted_result
 
-  def initialize(rules, result_of_search)
+  def initialize(rules, sorted_result)
     @rules = rules
-    @result_of_search = result_of_search
+    @sorted_result = sorted_result
+  end
+
+  def call
     sort_by_prise_and_date_added
   end
 
   def sort_by_prise_and_date_added
-    @result_of_search.sort_by { |car| Date.strptime(car['date_added'], '%d/%m/%y') }.reverse
+    @sorted_result.sort_by { |car| Date.strptime(car['date_added'], '%d/%m/%y') }.reverse
     if @rules['order_by'] == 'price'
-      @result_of_search.sort_by! do |car|
+      @sorted_result.sort_by! do |car|
         car['price']
       end
     else
-      @result_of_search.sort_by! { |car| Date.strptime(car['date_added'], '%d/%m/%y') }
+      @sorted_result.sort_by! { |car| Date.strptime(car['date_added'], '%d/%m/%y') }
     end
-    @rules['order_direction'] == 'asc' ? @result_of_search : @result_of_search.reverse!
+    @rules['order_direction'] == 'asc' ? @sorted_result : @sorted_result.reverse!
   end
 end

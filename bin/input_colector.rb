@@ -4,10 +4,13 @@
 class InputColector
   SEARCH_CRITERIA = %w[make model year_from year_to price_from price_to].freeze
 
-  attr_reader :rules
+  attr_accessor :rules
 
   def initialize
     @rules = {}
+  end
+
+  def call
     collect_inputs
   end
 

@@ -7,30 +7,48 @@ require_relative 'filter'
 require_relative 'sort'
 require_relative 'statistic'
 require_relative 'show_result'
+require_relative 'recorder'
 
 # class that collects all code components with all available functionality
 class RunApp
-  def initialize(car_file_db, file_to_record)
-    # save content of the file with existing cars
-    @car_file_collection = YAML.safe_load_file(car_file_db)
-    # collection of data from the user
-    @rules = InputColector.new.rules
-    # variable with the filtered search result
-    @result_of_search = Filter.new(@car_file_collection, @rules).result_of_search
+  def call
+    input_colector.call
+    take_filter_object.call
+    take_sort_object.call
+    take_statistic_object.call
+    show_statistic.call
+  end
 
-    # sorting the contents of @result_of_search according to the specified rules
-    Sort.new(@rules, @result_of_search)
+  def car_file_collection
+    @car_file_collection = Recorder.new('yaml_db/db_of_cars/cars.yml')
+  end
 
-    # variable with statistical information
-    @statistic_and_rules_collection = File.open(file_to_record, 'a+')
-    # formation of statistical information
-    @statistic_info = Statistic.new(@result_of_search, @rules, @statistic_and_rules_collection).statistic_info
-    # creating a file that will be written to @statistic_and_rules_collection
-    @info_to_save = Statistic.new(@result_of_search, @rules, @statistic_and_rules_collection).info_to_save
-    # storing a collection with search rules and statistical information
-    @statistic_and_rules_collection.puts YAML.dump(@info_to_save)
+  def statistic_and_rules_collection
+    @statistic_and_rules_collection = Recorder.new('yaml_db/db_for_statistic/searches.yml')
+  end
 
-    # output to the console an information based on search results
-    ShowResult.new(@statistic_info, @result_of_search)
+  def input_colector
+    @input_colector = InputColector.new
+  end
+
+  def take_filter_object
+    @take_filter_object = Filter.new(car_file_collection, @input_colector.rules)
+  end
+
+  def take_sort_object
+    @request = Sort.new(@input_colector.rules, @take_filter_object.result_of_search)
+  end
+
+  def take_statistic_object
+    @take_statistic_object = Statistic.new(@take_filter_object.result_of_search, @input_colector.rules,
+                                           statistic_and_rules_collection)
+  end
+
+  def safe_to_file
+    @statistic_and_rules_collection.record(@info_to_save.to_s)
+  end
+
+  def show_statistic
+    @show_statistic = ShowResult.new(@take_statistic_object.statistic_info, @take_filter_object.result_of_search)
   end
 end

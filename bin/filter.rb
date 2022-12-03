@@ -6,11 +6,10 @@ class Filter
 
   def initialize(car_file_collection, rules)
     @rules = rules
-    @result_of_search = car_file_collection
-    run_filter
+    @result_of_search = car_file_collection.load
   end
 
-  def run_filter
+  def call
     filter_by_exact_value
     filter_by_relative_values('price')
     filter_by_relative_values('year')

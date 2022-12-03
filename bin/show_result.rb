@@ -5,7 +5,9 @@ class ShowResult
   def initialize(statistic_info, result_of_search)
     @statistic_info = statistic_info
     @result_of_search = result_of_search
+  end
 
+  def call
     show_statistic
     show_requested_car
   end

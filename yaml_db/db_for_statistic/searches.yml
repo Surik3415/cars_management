@@ -23,17 +23,29 @@
     order_by: ''
     order_direction: ''
 ---
-- total_quantity_of_cars: 6
+- total_quantity_of_cars: 1
+  quantity_of_request: 1
+  request_params:
+    make: ''
+    model: a4
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
+---
+- total_quantity_of_cars: 14
   quantity_of_request: 1
   request_params:
     make: ''
     model: ''
     year_from: ''
-    year_to: ''
-    price_from: '15000'
+    year_to: '2018'
+    price_from: ''
     price_to: ''
     order_by: ''
-    order_direction: asc
+    order_direction: ''
 ---
 - total_quantity_of_cars: 6
   quantity_of_request: 1
@@ -45,16 +57,4 @@
     price_from: '15000'
     price_to: ''
     order_by: price
-    order_direction: asc
----
-- total_quantity_of_cars: 6
-  quantity_of_request: 1
-  request_params:
-    make: ''
-    model: ''
-    year_from: ''
-    year_to: ''
-    price_from: '15000'
-    price_to: ''
-    order_by: date_added
-    order_direction: asc
+    order_direction: desc
