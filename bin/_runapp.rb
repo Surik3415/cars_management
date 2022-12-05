@@ -1,14 +1,5 @@
 # frozen_string_literal: true
 
-require 'yaml'
-require 'date'
-require_relative 'input_colector'
-require_relative 'filter'
-require_relative 'sort'
-require_relative 'statistic'
-require_relative 'show_result'
-require_relative 'recorder'
-
 # class that collects all code components with all available functionality
 class RunApp
   def call
@@ -42,10 +33,6 @@ class RunApp
   def take_statistic_object
     @take_statistic_object = Statistic.new(@take_filter_object.result_of_search, @input_colector.rules,
                                            statistic_and_rules_collection)
-  end
-
-  def safe_to_file
-    @statistic_and_rules_collection.record(@info_to_save.to_s)
   end
 
   def show_statistic

@@ -15,8 +15,4 @@ class Recorder
   def record(modifyded_data)
     File.open(@yalm_file, 'a+') { |file| file.write(modifyded_data.to_yaml) }
   end
-
-  def load_a_stream
-    YAML.load_stream(@yalm_file)
-  end
 end
