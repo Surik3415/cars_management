@@ -58,3 +58,27 @@
     price_to: ''
     order_by: ''
     order_direction: ''
+---
+- total_quantity_of_cars: 2
+  quantity_of_request: 3
+  request_params:
+    make: ford
+    model: ''
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
+---
+- total_quantity_of_cars: 1
+  quantity_of_request: 1
+  request_params:
+    make: ''
+    model: focus
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
