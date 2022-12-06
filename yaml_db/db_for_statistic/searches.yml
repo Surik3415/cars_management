@@ -1,0 +1,60 @@
+---
+- total_quantity_of_cars: 2
+  quantity_of_request: 1
+  request_params:
+    make: ford
+    model: ''
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
+---
+- total_quantity_of_cars: 3
+  quantity_of_request: 1
+  request_params:
+    make: ''
+    model: ''
+    year_from: ''
+    year_to: ''
+    price_from: '20000'
+    price_to: ''
+    order_by: ''
+    order_direction: desc
+---
+- total_quantity_of_cars: 1
+  quantity_of_request: 1
+  request_params:
+    make: ''
+    model: ''
+    year_from: '2018'
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: price
+    order_direction: desc
+---
+- total_quantity_of_cars: 4
+  quantity_of_request: 1
+  request_params:
+    make: ''
+    model: ''
+    year_from: '2017'
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: price
+    order_direction: desc
+---
+- total_quantity_of_cars: 2
+  quantity_of_request: 2
+  request_params:
+    make: ford
+    model: ''
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
