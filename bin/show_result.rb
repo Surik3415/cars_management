@@ -18,7 +18,7 @@ class ShowResult
     quantity_of_request = "#{I18n.t(:"show_result.requests_quantity")}: #{@statistic_info['quantity_of_request']}"
     rows << [total_quantity.colorize(:light_green)] << [quantity_of_request.colorize(:light_green)]
     table = Terminal::Table.new title: I18n.t(:"show_result.statistic").to_s.colorize(:light_green), rows: rows
-    table.style = { width: 80, padding_left: 3, border_x: '=', border_i: 'x', alignment: :center }
+    table.style = { width: 90, padding_left: 3, border_x: '=', border_i: 'x', alignment: :center }
     puts table
   end
 
@@ -31,7 +31,7 @@ class ShowResult
       end
     end
     table = Terminal::Table.new title: "#{I18n.t(:"show_result.result")}:".colorize(:light_green), rows: rows
-    table.style = { width: 80, padding_left: 3, border_x: '=', border_i: 'x' }
+    table.style = { width: 90, padding_left: 3, border_x: '=', border_i: 'x' }
     puts table
   end
 end
