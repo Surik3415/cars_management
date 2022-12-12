@@ -17,9 +17,7 @@ class ShowResult
     total_quantity = "#{I18n.t(:"show_result.total_quantity")}: #{@statistic_info['total_quantity_of_cars']}"
     quantity_of_request = "#{I18n.t(:"show_result.requests_quantity")}: #{@statistic_info['quantity_of_request']}"
     rows << [total_quantity.colorize(:light_green)] << [quantity_of_request.colorize(:light_green)]
-    table = Terminal::Table.new title: I18n.t(:"show_result.statistic").to_s.colorize(:light_green), rows: rows
-    table.style = { width: 90, padding_left: 3, border_x: '=', border_i: 'x', alignment: :center }
-    puts table
+    puts tabled_result('show_result.statistic', rows, :center)
   end
 
   def show_requested_car
@@ -30,8 +28,12 @@ class ShowResult
         rows << :separator if key == 'date_added'
       end
     end
-    table = Terminal::Table.new title: "#{I18n.t(:"show_result.result")}:".colorize(:light_green), rows: rows
-    table.style = { width: 90, padding_left: 3, border_x: '=', border_i: 'x' }
-    puts table
+    puts tabled_result('show_result.result', rows)
+  end
+
+  def tabled_result(heading, fill, *text_align)
+    table = Terminal::Table.new title: "#{I18n.t(:"#{heading}")}:".to_s.colorize(:light_green), rows: fill
+    table.style = { width: 90, padding_left: 3, border_x: '=', border_i: 'x', alignment: text_align[0] }
+    table
   end
 end

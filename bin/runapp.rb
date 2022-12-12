@@ -3,7 +3,7 @@
 # class that collects all code components with all available functionality
 class RunApp
   def call
-    localate.call
+    localize.call
     input_colector.call
     take_filter_object.call
     take_sort_object.call
@@ -40,7 +40,7 @@ class RunApp
     @show_statistic = ShowResult.new(@take_statistic_object.statistic_info, @take_filter_object.result_of_search)
   end
 
-  def localate
-    @localate = Localate.new
+  def localize
+    @localize = Localize.new
   end
 end
