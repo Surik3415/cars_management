@@ -7,13 +7,13 @@ class Localize
   attr_reader :loco
 
   def call
-    load_locales(PATH_TO_LOCALE_FILE)
+    load_locales
     show_available_locales
     choose_locale
   end
 
-  def load_locales(path)
-    I18n.load_path = ["#{path}en.yml", "#{path}ua.yml"]
+  def load_locales
+    I18n.load_path = ['config/locales/en.yml', 'config/locales/ua.yml']
   end
 
   def show_available_locales
@@ -30,8 +30,8 @@ class Localize
     I18n.locale = loco
   end
 
-  def tabled_result(heading, fill)
-    table = Terminal::Table.new headings: [heading], rows: [fill]
+  def tabled_result(heading, rows)
+    table = Terminal::Table.new headings: [heading], rows: [rows]
     table.style = { width: 50, border_x: '=', border_i: 'x', alignment: :center }
     table
   end
