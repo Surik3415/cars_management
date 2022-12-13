@@ -2,7 +2,11 @@
 
 require 'yaml'
 require 'date'
+require 'terminal-table'
+require 'i18n'
+require 'colorize'
 require_relative 'input_colector'
+require_relative 'localize'
 require_relative 'filter'
 require_relative 'sort'
 require_relative 'statistic'

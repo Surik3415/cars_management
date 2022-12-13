@@ -1,0 +1,24 @@
+ua:
+  greatint: Гарний вибір
+  offer: Будь ласка, виберіть
+  sort:
+    option: параметр сортування (date_added - за датою розмішення оголошення | price - ціною) 
+    direction: відобразити за (desc - спаданням |asc - зростанням)
+  car_about:
+    id: ідентифікаційний номер
+    make: марка
+    model: модель
+    year_from: мінімальний рік випуску
+    year_to: максимальний рік випуску
+    price_from: мінімальну ціну
+    price_to: максимальну ціну
+    year: рік
+    odometer: пробіг
+    price: ціна
+    description: опис
+    date_added: дата розміщення оголошення
+  show_result:
+    result: Результат
+    statistic: Статистика
+    total_quantity: Кількість знайдених авто 
+    requests_quantity: Кількість схожих запитів

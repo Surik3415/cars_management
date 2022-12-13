@@ -1,0 +1,24 @@
+en:
+  greatint: Good choice
+  offer: Please choose
+  sort:
+    option: sort option (date_added|price)
+    direction: sort direction(desc|asc)
+  car_about:
+    id: id
+    make: make
+    model: model
+    year_from: year_from
+    year_to: year_to
+    price_from: price_from
+    price_to: price_to
+    year: year
+    odometer: odometer
+    price: price
+    description: description
+    date_added: date_added
+  show_result:
+    result: Results
+    statistic: Statistic
+    total_quantity: Total Quantity
+    requests_quantity: Requests Quantity

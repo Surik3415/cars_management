@@ -12,19 +12,21 @@ class InputColector
 
   def call
     collect_inputs
+    collect_sort_params
   end
 
   def collect_inputs
     SEARCH_CRITERIA.each do |criteria|
-      puts "Please choose #{criteria}:"
+      puts "#{I18n.t(:offer)} #{I18n.t(:"car_about.#{criteria}")}:".colorize(:magenta)
       @rules[criteria] = gets.chomp
     end
+  end
 
-    puts('Please choose sort option (date_added|price):')
+  def collect_sort_params
+    puts "#{I18n.t(:offer)} #{I18n.t(:"sort.option")}:".colorize(:magenta)
     order_by = gets.chomp
     @rules['order_by'] = order_by
-
-    puts('Please choose sort direction(desc|asc):')
+    puts "#{I18n.t(:offer)} #{I18n.t(:"sort.direction")}:".colorize(:magenta)
     order_direction = gets.chomp
     @rules['order_direction'] = order_direction
   end
