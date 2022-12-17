@@ -12,4 +12,4 @@ pre-commit:
       run: bundle exec rubocop --force-exclusion {all_files}
     bundler-leak:
       tags: find leaky gems
-      run: bundle exec rubocop bundler-leak
+      run: bundle exec bundler-leak

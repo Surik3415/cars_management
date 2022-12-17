@@ -23,56 +23,8 @@
     order_by: ''
     order_direction: ''
 ---
-- total_quantity_of_cars: 5
-  quantity_of_request: 1
-  request_params:
-    make: ''
-    model: ''
-    year_from: '2015'
-    year_to: ''
-    price_from: ''
-    price_to: ''
-    order_by: ''
-    order_direction: ''
----
 - total_quantity_of_cars: 2
   quantity_of_request: 1
-  request_params:
-    make: ford
-    model: ''
-    year_from: ''
-    year_to: ''
-    price_from: ''
-    price_to: ''
-    order_by: ''
-    order_direction: ''
----
-- total_quantity_of_cars: 2
-  quantity_of_request: 1
-  request_params:
-    make: audi
-    model: ''
-    year_from: ''
-    year_to: ''
-    price_from: ''
-    price_to: ''
-    order_by: ''
-    order_direction: ''
----
-- total_quantity_of_cars: 2
-  quantity_of_request: 2
-  request_params:
-    make: audi
-    model: ''
-    year_from: ''
-    year_to: ''
-    price_from: ''
-    price_to: ''
-    order_by: ''
-    order_direction: ''
----
-- total_quantity_of_cars: 2
-  quantity_of_request: 2
   request_params:
     make: ford
     model: ''
@@ -95,10 +47,22 @@
     order_by: ''
     order_direction: ''
 ---
-- total_quantity_of_cars: 0
-  quantity_of_request: 1
+- total_quantity_of_cars: 2
+  quantity_of_request: 3
   request_params:
-    make: index
+    make: bmw
+    model: ''
+    year_from: ''
+    year_to: ''
+    price_from: ''
+    price_to: ''
+    order_by: ''
+    order_direction: ''
+---
+- total_quantity_of_cars: 2
+  quantity_of_request: 4
+  request_params:
+    make: bmw
     model: ''
     year_from: ''
     year_to: ''

@@ -24,7 +24,6 @@ class Statistic
     @statistic_info['total_quantity_of_cars'] = @result_of_search.length
     @statistic_info['quantity_of_request'] = 1
     @statistic_info['request_params'] = @rules
-
     YAML.load_stream(File.open(@statistic_and_rules_collection.yalm_file, 'a+')) do |request|
       @statistic_info['quantity_of_request'] += 1 if request[0]['request_params'] == @rules
     end
