@@ -5,8 +5,6 @@ require 'date'
 require 'terminal-table'
 require 'i18n'
 require 'colorize'
-# require "bundler-leak"
-# require 'bundler-audit'
 require_relative 'input_colector'
 require_relative 'localize'
 require_relative 'filter'
