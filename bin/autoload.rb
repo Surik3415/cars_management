@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'bcrypt'
 require 'yaml'
 require 'date'
 require 'terminal-table'
@@ -14,3 +15,5 @@ require_relative 'show_result'
 require_relative 'recorder'
 require_relative 'runapp'
 require_relative 'tabled_module'
+require_relative 'main_menu'
+require_relative 'user'

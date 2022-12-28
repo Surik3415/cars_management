@@ -2,4 +2,4 @@
 
 require_relative 'bin/autoload'
 
-RunApp.new.call
+MainMenu.new

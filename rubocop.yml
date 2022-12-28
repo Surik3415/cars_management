@@ -1,4 +1,7 @@
 require:
+  - rubocop-md
+  - rubocop-rake
+  - rubocop-performance
 
 AllCops:
   TargetRubyVersion: 3.0

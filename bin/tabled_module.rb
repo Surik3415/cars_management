@@ -2,9 +2,9 @@
 
 # class that show result in the table
 module TabledModule
-  def tabled_result(heading, rows, *text_align)
+  def tabled_result(heading, rows)
     table = Terminal::Table.new title: "#{I18n.t(:"#{heading}")}:".to_s.colorize(:light_green), rows: rows
-    table.style = { width: 90, padding_left: 3, border_x: '=', border_i: 'x', alignment: text_align[0] }
+    table.style = { border_x: '=', border_i: 'x' }
     puts table
   end
 end

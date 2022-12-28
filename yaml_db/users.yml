@@ -1,0 +1,16 @@
+---
+- Suren@bk.ua
+- !ruby/string:BCrypt::Password
+  str: "$2a$12$5bWPN8rBzz4/G/ZgWkv9EuFD.yOSMEej7mGsmhVulf73OR.eAPIxe"
+  version: 2a
+  cost: 12
+  salt: "$2a$12$5bWPN8rBzz4/G/ZgWkv9Eu"
+  checksum: FD.yOSMEej7mGsmhVulf73OR.eAPIxe
+---
+- avakian@bk.ua
+- !ruby/string:BCrypt::Password
+  str: "$2a$12$mDfVlozVdIvv5ef2xN/VKe/ykZZLyszX50EOk3lGA2Di4wZ64fzEe"
+  version: 2a
+  cost: 12
+  salt: "$2a$12$mDfVlozVdIvv5ef2xN/VKe"
+  checksum: "/ykZZLyszX50EOk3lGA2Di4wZ64fzEe"
