@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'bcrypt'
 require_relative 'tabled_module'
 
-#main comment
+# main class for creating users, recording them in the database and tracking their status
 class User
-  FILE_PATH = 'yaml_db/users.yml'
+  # FILE_PATH = 'yaml_db/users.yml'
 
   attr_accessor :email, :password, :user_info
 
