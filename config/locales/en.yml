@@ -31,8 +31,7 @@ en:
       option_1: Search a car
       option_2: Show all cars
       option_3: Help
-      option_4: Exit
-      option_5: Autorization
+      option_4: Terminate the program
   autorization:
     password: please enter a password
     email: please enter your email

@@ -6,7 +6,7 @@ class Filter
 
   def initialize(car_file_collection, rules)
     @rules = rules
-    @result_of_search = car_file_collection.load
+    @result_of_search = car_file_collection.fetch
   end
 
   def call

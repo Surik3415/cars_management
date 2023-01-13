@@ -10,6 +10,7 @@ class MainMenu
 
   def initialize
     Localize.new.call
+    @session = SessionController.new
     call
   end
 
@@ -20,24 +21,19 @@ class MainMenu
     compere
   end
 
-  def show_options
-    options = [1, 2, 3, 4, 5]
+  def show_options # rubocop:disable Metrics/MethodLength
     row = []
+    options = [1, 2, 3, 4]
     options.each do |el|
       row << [I18n.t(:"main_menu.options.option_#{el}"), el]
     end
+    if @session.current_user
+      row << [I18n.t(:"autorization.log_out"), '5']
+    else
+      row << [I18n.t(:"autorization.log_in"), '5'] << [I18n.t(:"autorization.sing_up"), '6']
+    end
     tabled_result('main_menu.greating', row)
   end
-
-  # def user_menu
-  #   if @user.autorization
-  #     row << [I18n.t(:"main_menu.autorization.log_out"), '0']
-  #     tabled_result('main_menu.greating', row)
-  #   else
-  #     row << [I18n.t(:"main_menu.autorization.log_in"), '0']
-  #     tabled_result('main_menu.greating', row)
-  #   end
-  # end
 
   def chose_option
     @chosen_option = gets.chomp
@@ -45,23 +41,42 @@ class MainMenu
 
   def compere # rubocop:disable Metrics/MethodLength
     case @chosen_option
-    when '1'
-      search_a_car
-      call
-    when '2'
-      show_all_cars
-      call
-    when '3'
-      help
-      call
-    when '4'
-      exit_from_app
-    when '5'
-      @user = Autorization.new(User.new('yaml_db/users.yml'))
-      call
+    when '1', '2'
+      reserch_feature
+    when '3', '4'
+      menu_feature
+    when '5', '6'
+      session_feature
     else
       error
-      call
+    end
+    call
+  end
+
+  def reserch_feature
+    case @chosen_option
+    when '1'
+      search_a_car
+    when '2'
+      show_all_cars
+    end
+  end
+
+  def menu_feature
+    case @chosen_option
+    when '3'
+      help
+    when '4'
+      exit_from_app
+    end
+  end
+
+  def session_feature
+    case @chosen_option
+    when '5'
+      @session.current_user ? @session.log_out : @session.log_in
+    when '6'
+      @session.sign_up
     end
   end
 
@@ -70,7 +85,7 @@ class MainMenu
   end
 
   def show_all_cars
-    car_file_collection = Recorder.new('yaml_db/db_of_cars/cars.yml').load
+    car_file_collection = Recorder.new('yaml_db/db_of_cars/cars.yml').fetch
     separeted_cars = []
     car_file_collection.map do |car|
       car.map do |key, value|

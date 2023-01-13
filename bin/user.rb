@@ -1,53 +1,25 @@
 # frozen_string_literal: true
 
-require 'bcrypt'
-require_relative 'tabled_module'
-
-# main class for creating users, recording them in the database and tracking their status
+# User Model
 class User
-  # FILE_PATH = 'yaml_db/users.yml'
-
-  attr_accessor :email, :password, :user_info
-
-  include TabledModule
-
-  def initialize(user_file)
-    @user_file = user_file
-    call
+  def load_all_users
+    @users = database.fetch
   end
 
-  def call
-    enter_email
-    enter_password
-    collect_user_info
-    # save_info
+  def find_by(param, value)
+    load_all_users
+    @users.find { |user| user[param] == value }
   end
 
-  def enter_email
-    print "#{I18n.t(:'autorization.email')} \n"
-    @email = gets.chomp
-    return if @email.match?(/\w{5,}@\w+\.\w+/)
-
-    tabled_result('validators.validator_wrong', [[I18n.t(:'validators.email_requirements')]])
-    enter_email
+  def update(user)
+    load_all_users
+    @users << user
+    database.rewrite(@users)
   end
 
-  def enter_password
-    print "#{I18n.t(:'autorization.password')} \n"
-    @password = gets.chomp
-    return if @password.match?(/\W{2,}/) && @password.match?(/.{8,20}/) && @password.match?(/[[:upper:]]+/)
+  private
 
-    tabled_result('validators.validator_wrong', [[I18n.t(:'validators.password_requirements')]])
-    enter_password
+  def database
+    Recorder.new('yaml_db/users.yml')
   end
-
-  def collect_user_info
-    @user_info = []
-    @hased_pass = BCrypt::Password.create(@password)
-    @user_info << @email << @hased_pass
-  end
-
-  # def save_info
-  #   Recorder.new(FILE_PATH).record(@user_info)
-  # end
 end
