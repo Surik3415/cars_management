@@ -23,10 +23,10 @@ class InputColector
   end
 
   def collect_sort_params
-    puts "#{I18n.t(:offer)} #{I18n.t(:'sort.option')}:".colorize(:magenta)
+    puts "#{I18n.t(:offer)} #{I18n.t(:"sort.option")}:".colorize(:magenta)
     order_by = gets.chomp
     @rules['order_by'] = order_by
-    puts "#{I18n.t(:offer)} #{I18n.t(:'sort.direction')}:".colorize(:magenta)
+    puts "#{I18n.t(:offer)} #{I18n.t(:"sort.direction")}:".colorize(:magenta)
     order_direction = gets.chomp
     @rules['order_direction'] = order_direction
   end

@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 
+gem 'bcrypt', '~> 3.1.18'
 gem 'brakeman', '~> 3.3'
 gem 'bundler-audit', '~> 0.9.1'
 gem 'bundler-leak', '~> 0.3.0'

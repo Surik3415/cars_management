@@ -22,3 +22,25 @@ en:
     statistic: Statistic
     total_quantity: Total Quantity
     requests_quantity: Requests Quantity
+  main_menu:
+    help: It is a car online shopping app, currently you can choose a car by your own search parameters. Enter the corresponding number and follow the following links
+    exit: See you!
+    error_message: Incorrect value, try again
+    greating: Welcome, please select one of the following options
+    options:
+      option_1: Search a car
+      option_2: Show all cars
+      option_3: Help
+      option_4: Terminate the program
+  autorization:
+    password: please enter a password
+    email: please enter your email
+    hello: Hello
+    log_in: Log in
+    log_out: Log out
+    sing_up: Sing up
+  validators:
+    validator_general: You have entered incorrect data or are not registered in the system
+    validator_wrong: You put invalid value
+    password_requirements: password should have at least 1 capital letter, 2 special characters, least 8 symbols but no more than 20 symbols
+    email_requirements: login should have email-type format, at least 5 symbols before '@' and should be unique

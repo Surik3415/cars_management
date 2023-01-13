@@ -3,7 +3,7 @@
 # class that collects all code components with all available functionality
 class RunApp
   def call
-    localize.call
+    # localize.call
     input_colector.call
     take_filter_object.call
     take_sort_object.call
